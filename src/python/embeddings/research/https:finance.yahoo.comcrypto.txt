@@ -1,0 +1,1 @@
+{'url': 'https://finance.yahoo.com/crypto/', 'id': 80, 'text': '\n\n\n\nYahoo\n\n\n\n\n\n\n\n\n\n\n\n\nWill be right back...\nThank you for your patience.\nOur engineers are working quickly to resolve the issue.\n\n\n\n'}

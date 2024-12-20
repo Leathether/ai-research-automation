@@ -52,19 +52,27 @@ def get_all_urls(url, amt):
 def web_scrape_all(domain:str, amt):
     site = get_all_urls(domain, amt)
     f = open('./src/python/embeddings/sites.csv', 'a')
-    for i in site:
-        f.write(i)
+    i = 0
+    while i < len(site):
+        f.write(site[i])
+        i+=1
     f.close()
     soup = []
-    z = 0
-    for i in site:
-        z += 1
-        print(f"{z} {i}")
-        r = requests.get(i)
+    i=0
+    while i < len(site):
+        print(f"{i} {site[i]}")
+        r = requests.get(site[i])
+        z = site[i]
+        z = z.replace("/","")
+        z = f'./src/python/embeddings/research/{z}.txt'
+        if len(z) > 255:
+            i+=1
+            continue
         x = BeautifulSoup(r.content, 'html.parser').get_text()
-        f = open('./src/python/embeddings/research.csv', 'a')
-        f.write(x)
+        f = open(z, 'w')
+        f.write(str({"url":site[i],"id":i,"text":x}))
         f.close()
+        i+=1
     
     return soup
 
